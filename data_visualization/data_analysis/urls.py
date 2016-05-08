@@ -5,7 +5,12 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^income_analysis/?$', views.visualize_income_data, name='visualize_income_data'),
+    url(r'^analytics-1/?$', views.visualize_income_data, name='visualize_income_data'),
+    url(r'^analytics-2/?$', views.analytics2, name='analytics2'),
+    url(r'^analytics-3/?$', views.analytics3, name='analytics3'),
+    url(r'^analytics-4/?$', views.analytics4, name='analytics4'),
+    url(r'^reports/?$', views.reports, name='reports'),
+    url(r'^team-profile/?$', views.profile, name='profile'),
 
 ]
 

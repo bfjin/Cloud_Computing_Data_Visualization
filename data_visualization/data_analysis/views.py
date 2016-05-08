@@ -9,4 +9,36 @@ def index(request):
 
 
 def visualize_income_data(request):
-    return HttpResponse("income analysis!")
+    return render(request,
+                  'analysis/income_analysis.html',
+                  )
+
+
+def analytics2(request):
+    return render(request,
+                  'analysis/analytics2.html',
+                  )
+
+
+def analytics3(request):
+    return render(request,
+                  'analysis/analytics3.html',
+                  )
+
+
+def analytics4(request):
+    return render(request,
+                  'analysis/analytics4.html',
+                  )
+
+
+def reports(request):
+    return render(request,
+                  'analysis/reports.html',
+                  )
+
+
+def profile(request):
+    return render(request,
+                  'analysis/team_profile.html'
+                  )
