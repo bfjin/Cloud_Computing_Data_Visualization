@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request,
-                  'analysis/income_analysis.html',
+                  'analysis/dashboard.html',
                   )
 
 
