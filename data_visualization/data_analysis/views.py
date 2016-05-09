@@ -14,9 +14,9 @@ def visualize_income_data(request):
                   )
 
 
-def analytics2(request):
+def visualize_ancestry_politics_data(request):
     return render(request,
-                  'analysis/analytics2.html',
+                  'analysis/ancestry_politics_analysis.html',
                   )
 
 

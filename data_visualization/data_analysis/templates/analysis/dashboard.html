@@ -1,4 +1,5 @@
 {% extends "analysis/template.html" %}
+{% load static from staticfiles %}
 
 {% block title %}
 Data Analytic Dashboard
@@ -9,23 +10,27 @@ Data Analytic Dashboard
 
 <div class="row placeholders">
 <div class="col-xs-6 col-sm-3 placeholder">
-  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <h4>Income analysis</h4>
-  <span class="text-muted">Description</span>
+  <img src="{% static 'imgs/income_analysis.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <a href="/analytics-1/"><h4>Income Analysis</h4></a>
+  <br>
+  <span class="text-muted">A study of how income, education, happiness and family time are correlated.</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/ancestry_politics_analysis.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <a href="/analytics-2/"><h4>Ancestry Politics Analysis</h4></a>
+  <br>
+  <span class="text-muted">Comparison of ancestry and interest in politics.</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/sedentary_weather_analysis.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <a href="/analytics-3/"><h4>Sedentary Weather Analysis</h4></a>
+  <br>
+  <span class="text-muted">A study of sedentary behaviour and interest in weather.</span>
 </div>
 <div class="col-xs-6 col-sm-3 placeholder">
   <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <h4>Analytics 2</h4>
-  <span class="text-muted">Description</span>
-</div>
-<div class="col-xs-6 col-sm-3 placeholder">
-  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <h4>Analytics 3</h4>
-  <span class="text-muted">Description</span>
-</div>
-<div class="col-xs-6 col-sm-3 placeholder">
-  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <h4>Analytics 4</h4>
+  <a href="/analytics-4/"><h4>Analytics4</h4></a>
+  <br>
   <span class="text-muted">Description</span>
 </div>
 {% endblock %}
