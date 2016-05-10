@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .scenarios_analysis.income_analysis import search_data
+
 
 def index(request):
     return render(request,
@@ -9,6 +11,14 @@ def index(request):
 
 
 def visualize_income_data(request):
+    aurin_data = "/references/sla_income.csv"
+    output_path = "/analysis_data/income_happiness_report.csv"
+    search_data('coormelbourne',
+                'income_analysis',
+                aurin_data,
+                output_path)
+    
+
     return render(request,
                   'analysis/income_analysis.html',
                   )
