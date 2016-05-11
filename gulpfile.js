@@ -7,7 +7,12 @@ var argv = require('yargs')
   .alias('t', 'tag')
   .argv;
 
-gulp.task('build', shell.task([
+gulp.task('clean-dist', function () {
+  gulp.src('dist')
+    .pipe(clean());
+});
+
+gulp.task('build', ['clean-dist'], shell.task([
   'python -m compileall data_visualization'
 ]));
 
