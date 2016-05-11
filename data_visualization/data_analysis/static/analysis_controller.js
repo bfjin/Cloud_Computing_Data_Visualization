@@ -244,8 +244,8 @@
                 var aurin_per_100 = response.data.aurin_per_100;
                 var tweets_per_1000 = response.data.tweets_per_1000;
 
-                $scope.green_places_bbq_graph.labels = tweets_per_1000;
-                $scope.green_places_bbq_graph.data = [aurin_per_100];
+                $scope.green_places_bbq_graph.labels = aurin_per_100;
+                $scope.green_places_bbq_graph.data = [tweets_per_1000];
                 var i;
                 var table_data = []
                 for(i=0; i<sla.length; i++) {
@@ -279,8 +279,8 @@
                 var aurin_per_100 = response.data.aurin_per_100;
                 var tweets_per_1000 = response.data.tweets_per_1000;
 
-                $scope.unemployment_afl_graph.labels = tweets_per_1000;
-                $scope.unemployment_afl_graph.data = [aurin_per_100];
+                $scope.unemployment_afl_graph.labels = aurin_per_100;
+                $scope.unemployment_afl_graph.data = [tweets_per_1000];
                 var i;
                 var table_data = []
                 for(i=0; i<sla.length; i++) {
