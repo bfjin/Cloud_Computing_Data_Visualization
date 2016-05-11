@@ -7,13 +7,15 @@ Income Analysis
 {% block content %}
 <h1 class="page-header">Income Analysis</h1>
 
+<br/>
+<h2 class="sub-header"><strong>Melbourne</strong></h2>
 <h2 class="sub-header">Visualize data</h2>
-<div id="income_analysis_chart_container" ng-show="income_analysis_graph.visible">
+<div id="melb_income_analysis_chart_container" ng-show="melb_income_analysis_graph.visible">
     <div>
         <text id="y-axis-unit"><b ng-bind="incomeAnalysisGraphUnits"></b></text>
     </div>
     <div>
-        <canvas id="line" class="chart chart-line" chart-data="income_analysis_graph.data" chart-labels="income_analysis_graph.labels" chart-legend="true" chart-options="income_analysis_graph.options" chart-series="income_analysis_graph.series"></canvas>
+        <canvas id="line" class="chart chart-line" chart-data="melb_income_analysis_graph.data" chart-labels="melb_income_analysis_graph.labels" chart-legend="true" chart-options="melb_income_analysis_graph.options" chart-series="melb_income_analysis_graph.series"></canvas>
     </div>
 </div>
 
@@ -28,7 +30,7 @@ Income Analysis
             </tr>
         </thead>
         <tbody>
-            <tr class="animate-repeat" ng-repeat="entry in income_analysis_table">
+            <tr class="animate-repeat" ng-repeat="entry in melb_income_analysis_table">
                 {% verbatim %}
                 <th>{{ entry.sla }}</th>
                 <th>{{ entry.income }}</th>
@@ -37,5 +39,40 @@ Income Analysis
             <tr>
         </tbody>
     </table>
-<div>
+</div>
+
+<br/>
+<h2 class="sub-header"><strong>Sydney</strong></h2>
+<h2 class="sub-header">Visualize data</h2>
+<div id="syd_income_analysis_chart_container" ng-show="syd_income_analysis_graph.visible">
+    <div>
+        <text id="y-axis-unit"><b ng-bind="incomeAnalysisGraphUnits"></b></text>
+    </div>
+    <div>
+        <canvas id="line" class="chart chart-line" chart-data="syd_income_analysis_graph.data" chart-labels="syd_income_analysis_graph.labels" chart-legend="true" chart-options="syd_income_analysis_graph.options" chart-series="syd_income_analysis_graph.series"></canvas>
+    </div>
+</div>
+
+<h2 class="sub-header">Table of data</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><strong>SLA (Statistical Local Area)</strong></th>
+                <th><strong>Income Level</strong></th>
+                <th><strong>Happiness (Result of sentiment analysis)</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="animate-repeat" ng-repeat="entry in syd_income_analysis_table">
+                {% verbatim %}
+                <th>{{ entry.sla }}</th>
+                <th>{{ entry.income }}</th>
+                <th>{{ entry.happiness }}</th>
+                {% endverbatim %}
+            <tr>
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}
