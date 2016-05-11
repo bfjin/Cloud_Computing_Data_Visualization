@@ -61,9 +61,6 @@
             multiTooltipTemplate: function (obj) {
                 return obj.datasetLabel + ": " + formatNumber(obj.value);
             },
-
-            // Legend.
-            legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>; margin-top: 3px;\"></span><text class=\"legend-text\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></text></li><%}%></ul>"
         });
     }]);
 
