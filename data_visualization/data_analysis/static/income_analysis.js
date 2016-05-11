@@ -56,7 +56,7 @@
             // Customise tooltip.
             showTooltips: true,
             tooltipFontFamily: 'Arial',
-            tooltipFontSize: 10,
+            tooltipFontSize: 12,
             customTooltips: false,
             multiTooltipTemplate: function (obj) {
                 return obj.datasetLabel + ": " + formatNumber(obj.value);
@@ -71,19 +71,6 @@
         function($http, $scope, $log, $window, $rootScope, $timeout){
         
         var chart = this;
-
-        var dashboardEndpoint = "/"
-        var incomeAnalysisEndpoint = "/get_analytics-1/";
-        var incomeAnalysisPageEndpoint = "/analytics-1/";
-
-        $scope.income_analysis_graph = {};
-        $scope.income_analysis_graph.visible = true;
-
-        $scope.income_analysis_graph.series = [0,0,0,0,0];
-
-        $scope.income_analysis_graph.options = {
-            animation: true
-        } 
 
         Chart.defaults.global.colours = [
             {
@@ -104,6 +91,30 @@
             }
         ];
 
+        var dashboardEndpoint = "/"
+        var incomeAnalysisEndpoint = "/get_analytics-1/";
+        var incomeAnalysisPageEndpoint = "/analytics-1/";
+
+
+        $scope.incomeAnalysisGraphUnits = "Australian dollars";
+        $scope.melb_income_analysis_graph = {};
+        $scope.melb_income_analysis_graph.visible = true;
+
+        $scope.melb_income_analysis_graph.series = ["Income", "Happiness"];
+
+        $scope.melb_income_analysis_graph.options = {
+            animation: true
+        } 
+
+        $scope.syd_income_analysis_graph = {};
+        $scope.syd_income_analysis_graph.visible = true;
+
+        $scope.syd_income_analysis_graph.series = ["Income", "Happiness"];
+
+        $scope.syd_income_analysis_graph.options = {
+            animation: false
+        } 
+
         $timeout(getIncomeAnalysisHelper(), 1000);
 
         $scope.getIncomeAnalysis = function() {
@@ -116,20 +127,36 @@
                 url: incomeAnalysisEndpoint,
                 method: 'GET',
             }).then(function successCallback(response) {
-                var chart_sla = response.data.sla;
-                var chart_income_data = response.data.income;
-                var chart_happiness_data = response.data.happiness;
+                var melb_chart_sla = response.data.melb_sla;
+                var melb_chart_income_data = response.data.melb_income;
+                var melb_chart_happiness_data = response.data.melb_happiness;
+                var syd_chart_sla = response.data.syd_sla;
+                var syd_chart_income_data = response.data.syd_income;
+                var syd_chart_happiness_data = response.data.syd_happiness;
 
-                $scope.income_analysis_graph.labels = chart_sla;
-                $scope.income_analysis_graph.data = [chart_income_data,
-                                                     chart_happiness_data];
+                //for melbourne.
+                $scope.melb_income_analysis_graph.labels = melb_chart_sla;
+                $scope.melb_income_analysis_graph.data = [melb_chart_income_data,
+                                                          melb_chart_happiness_data];
 
                 var income_analysis_table = [];
                 var i;
-                for(i=0; i<chart_sla.length; i++){
-                    income_analysis_table.push({sla:chart_sla[i], income:chart_income_data[i], happiness:chart_happiness_data[i]});
+                for(i=0; i<melb_chart_sla.length; i++){
+                    income_analysis_table.push({sla:melb_chart_sla[i], income:melb_chart_income_data[i], happiness:melb_chart_happiness_data[i]});
                 }
-                $scope.income_analysis_table = income_analysis_table;
+                $scope.melb_income_analysis_table = income_analysis_table;
+
+                //for sydney.
+                $scope.syd_income_analysis_graph.labels = syd_chart_sla;
+                $scope.syd_income_analysis_graph.data = [syd_chart_income_data,
+                                                         syd_chart_happiness_data];
+
+                var income_analysis_table = [];
+                var i;
+                for(i=0; i<syd_chart_sla.length; i++){
+                    income_analysis_table.push({sla:syd_chart_sla[i], income:syd_chart_income_data[i], happiness:syd_chart_happiness_data[i]});
+                }
+                $scope.syd_income_analysis_table = income_analysis_table;
             }, function errorCallback(response) {
                 $window.location.href = dashboardEndpoint;
                 alert(response.data.error);
