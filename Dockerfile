@@ -2,6 +2,7 @@ FROM ubuntu:xenial
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common python-pip python-dev build-essential
+RUN pip install --upgrade pip
 RUN pip install django
 RUN mkdir -p /root/comp90024_cloud_computing_data_visualization
 
