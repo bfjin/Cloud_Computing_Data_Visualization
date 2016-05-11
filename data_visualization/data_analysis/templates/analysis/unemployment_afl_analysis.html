@@ -1,0 +1,46 @@
+{% extends "analysis/template.html" %}
+
+{% block title %}
+Analytics4
+{% endblock %}
+
+{% block content %}
+<h1 class="page-header">Unemployment Rate & AFL</h1>
+
+<h2 class="sub-header">Visualize data</h2>
+<div id="unemployment_afl_graph_container" ng-show="unemployment_afl_graph.visible">
+    <div class="graph_title">Green Place Reserve & BBQ Analysis</div>
+    <div>
+        <text id="y-axis-unit"><b ng-bind="unemployment_afl_graph_unit"></b></text>
+    </div>
+    <div>
+        <canvas id="line" class="chart chart-line" chart-data="unemployment_afl_graph.data" chart-labels="unemployment_afl_graph.labels" chart-legend="true" chart-options="unemployment_afl_graph.options" chart-series="unemployment_afl_graph.series"></canvas>
+    </div>
+</div>
+
+<h2 class="sub-header">Table of data</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><strong>SLA (Statistical Local Area)</strong></th>
+                <th><strong>Aurin data</strong></th>
+                <th><strong>Tweet count</strong></th>
+                <th><strong>Aurin data per 100 population</strong></th>
+                <th><strong>Tweets per 1000 Population</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="animate-repeat" ng-repeat="entry in unemployment_afl_analysis_table">
+                {% verbatim %}
+                <th>{{ entry.sla }}</th>
+                <th>{{ entry.aurin }}</th>
+                <th>{{ entry.tweet_count }}</th>
+                <th>{{ entry.aurin_per_100 }}</th>
+                <th>{{ entry.tweets_per_1000 }}</th>
+                {% endverbatim %}
+            <tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

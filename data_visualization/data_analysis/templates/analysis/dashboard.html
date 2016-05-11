@@ -11,26 +11,26 @@ Data Analytic Dashboard
 <div class="row placeholders">
 <div class="col-xs-6 col-sm-3 placeholder">
   <img src="{% static 'imgs/income_analysis.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <a href ng-click="getIncomeAnalysis()"><h4>Income Analysis</h4></a>
+  <a href ng-click="getIncomeAnalysis()"><h4>Income&Happiness</h4></a>
   <br>
   <span class="text-muted">A study of how income and happiness are correlated.</span>
 </div>
 <div class="col-xs-6 col-sm-3 placeholder">
   <img src="{% static 'imgs/ancestry_politics_analysis.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <a href="/analytics-2/"><h4>Ancestry Politics Analysis</h4></a>
+  <a href ng-click="getTransportPoliticsAnalysis()"><h4>Transportation&Politics</h4></a>
   <br>
-  <span class="text-muted">Comparison of ancestry and interest in politics.</span>
+  <span class="text-muted">Comparison of trouble with transport and interest in politics.</span>
 </div>
 <div class="col-xs-6 col-sm-3 placeholder">
-  <img src="{% static 'imgs/sedentary_weather_analysis.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <a href="/analytics-3/"><h4>Sedentary Weather Analysis</h4></a>
+  <img src="{% static 'imgs/bbq.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <a href="/analytics-3/"><h4>Green Places&BBQ</h4></a>
   <br>
-  <span class="text-muted">A study of sedentary behaviour and interest in weather.</span>
+  <span class="text-muted">Comparison of visits to green spaces (once per week) and interest in barbeques and parties.</span>
 </div>
 <div class="col-xs-6 col-sm-3 placeholder">
-  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-  <a href="/analytics-4/"><h4>Analytics4</h4></a>
+  <img src="{% static 'imgs/afl.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <a href="/analytics-4/"><h4>Unemployment&AFL</h4></a>
   <br>
-  <span class="text-muted">Description</span>
+  <span class="text-muted">Comparison of unemployment rate and interest in AFL.</span>
 </div>
 {% endblock %}

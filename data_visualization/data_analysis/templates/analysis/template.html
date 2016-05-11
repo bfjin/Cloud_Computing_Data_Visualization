@@ -11,7 +11,7 @@
     <script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
     <script src="{% static 'bower_components/angular-chart.js/dist/angular-chart.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'bower_components/angular-chart.js/dist/angular-chart.css' %}">
-    <script src="{% static 'income_analysis.js' %}"></script>
+    <script src="{% static 'analysis_controller.js' %}"></script>
 </head>
 <body ng-app="charts" ng-controller="ChartController">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -42,10 +42,10 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a id="income_analysis" href ng-click="getIncomeAnalysis()">Income Analysis</a></li>
-            <li><a href="/analytics-2/">Ancestry Politics Analysis</a></li>
-            <li><a href="/analytics-3/">Analytics3</a></li>
-            <li><a href="/analytics-4/">Analytics4</a></li>
+            <li><a href ng-click="getIncomeAnalysis()">Income&Happiness</a></li>
+            <li><a href ng-click="getTransportPoliticsAnalysis()">Transportation&Politics</a></li>
+            <li><a href="/analytics-3/">Green Places&BBQ</a></li>
+            <li><a href="/analytics-4/">Unemployment&AFL</a></li>
             <li><a href="/reports/">Reports</a></li>
           </ul>
         </div>

@@ -56,33 +56,109 @@ def income_data(request):
     for h in syd_happiness_data:
         new_syd_happiness_data.append(round(float(h) * syd_income_threshold, 3))
 
-    response = {"melb_sla": melb_sla_data,
-                "melb_income": melb_income_data,
-                "melb_happiness": new_melb_happiness_data,
-                "syd_sla": syd_sla_data,
-                "syd_income": syd_income_data,
-                "syd_happiness": new_syd_happiness_data,
-                }
+    response = {
+        "melb_sla": melb_sla_data,
+        "melb_income": melb_income_data,
+        "melb_happiness": new_melb_happiness_data,
+        "syd_sla": syd_sla_data,
+        "syd_income": syd_income_data,
+        "syd_happiness": new_syd_happiness_data,
+    }
 
     return JsonResponse(response)
 
 
-def visualize_ancestry_politics_data(request):
+def visualize_transportation_politics_data(request):
     return render(request,
-                  'analysis/ancestry_politics_analysis.html',
+                  'analysis/transportation_politics_analysis.html',
                   )
 
 
-def analytics3(request):
+def transportation_politics_data(request):
+    transport_trouble = []
+    politics_tweets_num = []
+    sla = []
+
+    with open(ANALYSIS_PATH + 'results_transport_politics.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            transport_trouble.append(round(float(row[1]), 5))
+            politics_tweets_num.append(round(float(row[2]), 5))
+            sla.append(row[0])
+
+    response = {
+        "tweets_num": politics_tweets_num,
+        "transport_trouble": transport_trouble,
+        "sla": sla
+    }
+
+    return JsonResponse(response)
+
+
+def visualize_green_places_bbq_data(request):
     return render(request,
-                  'analysis/analytics3.html',
+                  'analysis/greenplaces_bbq_analysis.html',
                   )
 
 
-def analytics4(request):
+def green_places_bbq_data(request):
+    sla = []
+    aurin = []
+    tweet_count = []
+    aurin_per_100 = []
+    tweets_per_1000 = []
+
+    with open(ANALYSIS_PATH + 'green_place_visit_bbq_correlation.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            sla.append(row[0])
+            aurin.append(row[1])
+            tweet_count.append(row[2])
+            aurin_per_100.append(round(float(row[3]), 5))
+            tweets_per_1000.append(round(float(row[4]), 5))
+
+    response = {
+        "sla": sla,
+        "aurin": aurin,
+        "tweet_count": tweet_count,
+        "aurin_per_100": aurin_per_100,
+        "tweets_per_1000": tweets_per_1000
+    }
+
+    return JsonResponse(response)
+
+
+def visualize_unemployment_afl_data(request):
     return render(request,
-                  'analysis/analytics4.html',
+                  'analysis/unemployment_afl_analysis.html',
                   )
+
+
+def unemployment_afl_data(request):
+    sla = []
+    aurin = []
+    aurin_per_100 = []
+    tweet_count = []
+    tweets_per_1000 = []
+
+    with open(ANALYSIS_PATH + 'unemplyed_afl_correlation.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            sla.append(row[0])
+            aurin.append(row[1])
+            aurin_per_100.append(round(float(row[2]), 5))
+            tweet_count.append(row[3])
+            tweets_per_1000.append(round(float(row[4]), 5))
+
+    response = {
+        "sla": sla,
+        "aurin": aurin,
+        "tweet_count": tweet_count,
+        "aurin_per_100": aurin_per_100,
+        "tweets_per_1000": tweets_per_1000
+    }
+
+    return JsonResponse(response)
 
 
 def reports(request):

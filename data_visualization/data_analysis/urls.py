@@ -8,12 +8,17 @@ urlpatterns = [
     url(r'^get_analytics-1/?$', views.income_data, name='income_data'),
     url(r'^analytics-1/?$', views.visualize_income_data, name='visualize_income_data'),
 
-    #url(r'^get_analytics-2/?$', views.ancestry_politics_data, name='ancestry_politics_data'),
-    url(r'^analytics-2/?$', views.visualize_ancestry_politics_data, name='visualize_ancestry_politics_data'),
+    url(r'^get_analytics-2/?$', views.transportation_politics_data, name='transportation_politics_data'),
+    url(r'^analytics-2/?$', views.visualize_transportation_politics_data, name='visualize_transportation_politics_data'),
 
-    url(r'^analytics-3/?$', views.analytics3, name='analytics3'),
-    url(r'^analytics-4/?$', views.analytics4, name='analytics4'),
+    url(r'^get_analytics-3/?$', views.green_places_bbq_data, name='green_places_bbq_data'),
+    url(r'^analytics-3/?$', views.visualize_green_places_bbq_data, name='visualize_green_places_bbq_data'),
+
+    url(r'^get_analytics-4/?$', views.unemployment_afl_data, name='unemployment_afl_data'),
+    url(r'^analytics-4/?$', views.visualize_unemployment_afl_data, name='visualize_unemployment_afl_data'),
+
     url(r'^reports/?$', views.reports, name='reports'),
+
     url(r'^team-profile/?$', views.profile, name='profile'),
 
 ]
