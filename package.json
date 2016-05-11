@@ -1,0 +1,33 @@
+{
+  "name": "cloud_computing_data_visualization",
+  "version": "1.0.0",
+  "description": "COMP90024 Cloud and Cluster Computing - Assignment2 Visualization",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Shuliyey@bitbucket.org/ccc20163/cloud_computing_data_visualization.git"
+  },
+  "keywords": [
+    "django",
+    "angular.js",
+    "python",
+    "cloud",
+    "\"big",
+    "data\""
+  ],
+  "author": "Zeyu Ye, Kimple Ke, Roger Li, Fei Tang, Bofan Jing",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ccc20163/cloud_computing_data_visualization#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-shell": "^0.5.2",
+    "run-sequence": "^1.1.5"
+  },
+  "dependencies": {
+    "yargs": "^4.7.0"
+  }
+}
