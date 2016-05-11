@@ -17,8 +17,6 @@ urlpatterns = [
     url(r'^get_analytics-4/?$', views.unemployment_afl_data, name='unemployment_afl_data'),
     url(r'^analytics-4/?$', views.visualize_unemployment_afl_data, name='visualize_unemployment_afl_data'),
 
-    url(r'^reports/?$', views.reports, name='reports'),
-
     url(r'^team-profile/?$', views.profile, name='profile'),
 
 ]

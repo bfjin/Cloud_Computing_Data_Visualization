@@ -1,4 +1,5 @@
 {% extends "analysis/template.html" %}
+{% load static from staticfiles %}
 
 {% block title %}
 Team Info
@@ -7,4 +8,35 @@ Team Info
 {% block content %}
 <h1 class="page-header">Team Profile</h1>
 
+<div class="row placeholders">
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/kimple.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <br/>
+  <br/>
+  <span class="text-muted">Kimple Ke</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/roger.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <br/>
+  <br/>
+  <span class="text-muted">Roger Li</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/bofan.png' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <br/>
+  <br/>
+  <span class="text-muted">Bofan Jin</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/fei.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <br/>
+  <br/>
+  <span class="text-muted">Fei Tang</span>
+</div>
+<div class="col-xs-6 col-sm-3 placeholder">
+  <img src="{% static 'imgs/david.jpg' %}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+  <br/>
+  <br/>
+  <span class="text-muted">David Ye</span>
+</div>
 {% endblock %}
