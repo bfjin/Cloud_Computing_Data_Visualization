@@ -7,6 +7,16 @@ Income Analysis
 {% block content %}
 <h1 class="page-header">Income Analysis</h1>
 
+<h2 class="sub-header">Visualize data</h2>
+<div id="income_analysis_chart_container" ng-show="income_analysis_graph.visible">
+    <div>
+        <text id="y-axis-unit"><b ng-bind="incomeAnalysisGraphUnits"></b></text>
+    </div>
+    <div>
+        <canvas id="line" class="chart chart-line" chart-data="income_analysis_graph.data" chart-labels="income_analysis_graph.labels" chart-legend="true" chart-options="income_analysis_graph.options" chart-series="income_analysis_graph.series"></canvas>
+    </div>
+</div>
+
 <h2 class="sub-header">Table of data</h2>
 <div class="table-responsive">
     <table class="table table-striped">
@@ -22,15 +32,4 @@ Income Analysis
         </tbody>
     </table>
 <div>
-
-<h2 class="sub-header">Visualize data</h2>
-     <div id="income_analysis_chart_container" ng-show="income_analysis_graph.visible">
-            <div>
-                <text id="y-axis-unit"><b ng-bind="incomeAnalysisGraphUnits"></b></text>
-            </div>
-            <div>
-                <canvas id="line" class="chart chart-line" chart-data="income_analysis_graph.data" chart-labels="income_analysis_graph.labels" chart-legend="true" chart-options="income_analysis_graph.options" chart-series="income_analysis_graph.series"></canvas>
-            </div>
-        </div>
-</div>
 {% endblock %}

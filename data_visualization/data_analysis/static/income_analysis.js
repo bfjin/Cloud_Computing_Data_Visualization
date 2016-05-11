@@ -1,6 +1,30 @@
 (function() {
     var app = angular.module('charts', ['chart.js']);
 
+    //Format a number, rounding to 2 decimal digits
+    function formatNumber(number) {
+        if (number) {
+            return parseFloat(number).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        } else {
+            return number;
+        }
+    }
+
+    //Format a number, rounding to whole (no decimal digits).
+    function formatNumberRound(number) {
+        if (number) {
+            return parseFloat(number).toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+        } else {
+            return number;
+        }
+    }
+
     // Configure angular chart.
     app.config(['ChartJsProvider', function (ChartJsProvider) {
         ChartJsProvider.setOptions('Line', {
@@ -43,10 +67,43 @@
         });
     }]);
 
-    app.controller("ChartController", ['$http', '$scope', '$log', function($http, $scope, $log){
+    app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope',
+        function($http, $scope, $log, $window, $rootScope){
+        
         var chart = this;
 
-        var incomeAnalysisEndpoint = "/analytics-1/";
+        var incomeAnalysisEndpoint = "/get_analytics-1/";
+        var incomeAnalysisPageEndpoint = "/analytics-1/";
+
+        $scope.income_analysis_graph = {};
+        $scope.income_analysis_graph.visible = true;
+        $scope.income_analysis_graph.data = [[100,200,300,400,500], [50,51,52,53,54]];
+        $scope.income_analysis_graph.labels = [11,12,13,14,15];
+        $scope.income_analysis_graph.series = [0,0,0,0,0];
+
+        $scope.income_analysis_graph.options = {
+            animation: true
+        } 
+
+        Chart.defaults.global.colours = [
+            {
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgba(255,102,0,1)",
+                pointColor: "rgba(255,102,0,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "rgba(255,102,0,1)",
+                pointHighlightStroke: "rgba(255,102,0,1)"
+            },
+            {
+                fillColor: "rgba(0,51,102,0)",
+                strokeColor: "rgba(0,51,102,1)",
+                pointColor: "rgba(0,51,102,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "rgba(0,51,102,1)",
+                pointHighlightStroke: "rgba(0,51,102,1)",
+            }
+        ];
+
 
         $scope.getIncomeAnalysis = function() {
             $http({
@@ -57,10 +114,11 @@
                 var chart_income_data = response.data.income;
                 var chart_happiness_data = response.data.happiness;
 
-                console.log(chart_labels);
-                console.log(chart_income_data);
-                console.log(chart_happiness_data);
+                $scope.income_analysis_graph.labels = chart_labels;
+                $scope.income_analysis_graph.data = [chart_income_data,
+                                                     chart_happiness_data];
 
+                $window.location.href = incomeAnalysisPageEndpoint;
             }, function errorCallback(response) {
                 $scope.notify(response.data.error);
             });

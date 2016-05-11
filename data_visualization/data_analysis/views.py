@@ -13,6 +13,12 @@ def index(request):
 
 
 def visualize_income_data(request):
+    return render(request,
+                  'analysis/income_analysis.html',
+                  )
+
+
+def income_data(request):
     #aurin_data = "/references/sla_income.csv"
     #output_path = "/analysis_data/melb_income_happiness_report.csv"
     #search_data('coormelbourne',
@@ -38,9 +44,6 @@ def visualize_income_data(request):
                 "happiness": happiness_data}
 
     return JsonResponse(response)
-    #return render(request,
-    #              'analysis/income_analysis.html',
-    #              )
 
 
 def visualize_ancestry_politics_data(request):
