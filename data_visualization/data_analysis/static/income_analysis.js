@@ -67,18 +67,18 @@
         });
     }]);
 
-    app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope',
-        function($http, $scope, $log, $window, $rootScope){
+    app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope', '$timeout',
+        function($http, $scope, $log, $window, $rootScope, $timeout){
         
         var chart = this;
 
+        var dashboardEndpoint = "/"
         var incomeAnalysisEndpoint = "/get_analytics-1/";
         var incomeAnalysisPageEndpoint = "/analytics-1/";
 
         $scope.income_analysis_graph = {};
         $scope.income_analysis_graph.visible = true;
-        $scope.income_analysis_graph.data = [[100,200,300,400,500], [50,51,52,53,54]];
-        $scope.income_analysis_graph.labels = [11,12,13,14,15];
+
         $scope.income_analysis_graph.series = [0,0,0,0,0];
 
         $scope.income_analysis_graph.options = {
@@ -104,23 +104,35 @@
             }
         ];
 
+        $timeout(getIncomeAnalysisHelper(), 1000);
 
         $scope.getIncomeAnalysis = function() {
+            $window.location.href = incomeAnalysisPageEndpoint;
+            getIncomeAnalysisHelper();
+        }
+
+        function getIncomeAnalysisHelper() {
             $http({
                 url: incomeAnalysisEndpoint,
                 method: 'GET',
             }).then(function successCallback(response) {
-                var chart_labels = response.data.sla;
+                var chart_sla = response.data.sla;
                 var chart_income_data = response.data.income;
                 var chart_happiness_data = response.data.happiness;
 
-                $scope.income_analysis_graph.labels = chart_labels;
+                $scope.income_analysis_graph.labels = chart_sla;
                 $scope.income_analysis_graph.data = [chart_income_data,
                                                      chart_happiness_data];
 
-                $window.location.href = incomeAnalysisPageEndpoint;
+                var income_analysis_table = [];
+                var i;
+                for(i=0; i<chart_sla.length; i++){
+                    income_analysis_table.push({sla:chart_sla[i], income:chart_income_data[i], happiness:chart_happiness_data[i]});
+                }
+                $scope.income_analysis_table = income_analysis_table;
             }, function errorCallback(response) {
-                $scope.notify(response.data.error);
+                $window.location.href = dashboardEndpoint;
+                alert(response.data.error);
             });
         }
     }]);

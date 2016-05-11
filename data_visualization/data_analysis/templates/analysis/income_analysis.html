@@ -22,13 +22,19 @@ Income Analysis
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>SLA (Statistical Local Area)</th>
-                <th>Income Level</th>
-                <th>Happiness (Result of sentiment analysis)</th>
+                <th><strong>SLA (Statistical Local Area)</strong></th>
+                <th><strong>Income Level</strong></th>
+                <th><strong>Happiness (Result of sentiment analysis)</strong></th>
             </tr>
         </thead>
         <tbody>
-            
+            <tr class="animate-repeat" ng-repeat="entry in income_analysis_table">
+                {% verbatim %}
+                <th>{{ entry.sla }}</th>
+                <th>{{ entry.income }}</th>
+                <th>{{ entry.happiness }}</th>
+                {% endverbatim %}
+            <tr>
         </tbody>
     </table>
 <div>

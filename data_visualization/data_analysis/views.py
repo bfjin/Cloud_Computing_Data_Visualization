@@ -1,9 +1,9 @@
 import csv
-
+import os
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from .scenarios_analysis.income_analysis import search_data
+ANALYSIS_PATH = os.path.join(os.path.dirname(__file__), 'analysis_data/')
 
 
 def index(request):
@@ -19,29 +19,27 @@ def visualize_income_data(request):
 
 
 def income_data(request):
-    #aurin_data = "/references/sla_income.csv"
-    #output_path = "/analysis_data/melb_income_happiness_report.csv"
-    #search_data('coormelbourne',
-    #            'income_analysis',
-    #            aurin_data,
-    #            output_path)
-    #sla_data = []
-    #income_data = []
-    #happiness_data = []
-    #with open(output_path) as csvfile:
-    #    reader = csv.reader(csvfile)
-    #    for row in reader:
-    #        sla_data.append(row[0])
-    #        income_data.append(row[1])
-    #        happiness_data.append(row[2])
+    sla_data = []
+    income_data = []
+    happiness_data = []
+    income_threshold = 100000000.0
+    with open(ANALYSIS_PATH + "melb_income_happiness_report.csv") as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            income = float(row[1])
+            if income < income_threshold:
+                income_threshold = income
+            sla_data.append(row[0])
+            income_data.append(income)
+            happiness_data.append(row[2])
 
-    sla_data = [11,12,13,14,15]
-    income_data = [100,200,300,400,500]
-    happiness_data = [50,51,52,53,54]
+    new_happiness_data = []
+    for h in happiness_data:
+        new_happiness_data.append(round(float(h) * income_threshold, 3))
 
     response = {"sla": sla_data,
                 "income": income_data,
-                "happiness": happiness_data}
+                "happiness": new_happiness_data}
 
     return JsonResponse(response)
 

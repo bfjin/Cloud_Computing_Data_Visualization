@@ -104,3 +104,11 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+
+/*
+ * font weight to normal
+ */
+th {
+  font-weight: normal;
+}
