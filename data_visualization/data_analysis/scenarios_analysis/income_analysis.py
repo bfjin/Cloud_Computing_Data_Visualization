@@ -64,7 +64,6 @@ def search_data(dbname, topic, aurin_data, output_path):
 
     file_path = output_path
     with open(file_path, 'w') as csvfile:
-        csvfile.write('SLA,Income,Happiness')
         for sla in sla_dict.keys():
             income = sla_dict[sla]["income"]
             happiness = sla_dict[sla]["happiness"]

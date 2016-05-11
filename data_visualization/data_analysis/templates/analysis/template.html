@@ -4,10 +4,16 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}">
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js'%}"></script>
+    <script src="{% static 'bower_components/Chart.js/Chart.min.js'%}"></script>
+    <script src="{% static 'bower_components/angular/angular.min.js' %}"></script>
+    <script src="{% static 'bower_components/angular-chart.js/dist/angular-chart.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/angular-chart.js/dist/angular-chart.css' %}">
+    <script src="{% static 'income_analysis.js' %}"></script>
 </head>
-<body>
+<body ng-app="charts" ng-controller="ChartController">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -36,7 +42,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="/">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="/analytics-1/">Income Analysis</a></li>
+            <li><a id="income_analysis" href ng-click="getIncomeAnalysis()">Income Analysis</a></li>
             <li><a href="/analytics-2/">Ancestry Politics Analysis</a></li>
             <li><a href="/analytics-3/">Analytics3</a></li>
             <li><a href="/analytics-4/">Analytics4</a></li>
