@@ -76,10 +76,12 @@
         var incomeAnalysisEndpoint = "/get_analytics-1/";
         var incomeAnalysisPageEndpoint = "/analytics-1/";
 
+
+        $scope.incomeAnalysisGraphUnits = "Australian dollars";
         $scope.income_analysis_graph = {};
         $scope.income_analysis_graph.visible = true;
 
-        $scope.income_analysis_graph.series = [0,0,0,0,0];
+        $scope.income_analysis_graph.series = ["Income", "Happiness"];
 
         $scope.income_analysis_graph.options = {
             animation: true
