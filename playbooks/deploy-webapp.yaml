@@ -1,5 +1,5 @@
 ---
-- hosts: twitter-miner
+- hosts: webapp
   become: yes
   become_user: root
   become_method: sudo
