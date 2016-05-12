@@ -1,3 +1,8 @@
+/*
+* Cluster and Cloud Computing assignment 2
+* Author: Kimple Ke
+*/
+
 (function() {
     var app = angular.module('charts', ['chart.js']);
 

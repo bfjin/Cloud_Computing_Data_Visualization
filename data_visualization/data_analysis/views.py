@@ -1,3 +1,9 @@
+"""
+Team: Cluster and Cloud Computing Team 3
+Contents: Assigment 2
+Authors: Kimple Ke
+"""
+
 import csv
 import os
 from django.shortcuts import render

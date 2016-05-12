@@ -1,3 +1,9 @@
+"""
+Team: Cluster and Cloud Computing Team 3
+Contents: Assigment 2
+Authors: Kimple Ke
+"""
+
 from django.conf import settings
 from django.conf.urls import url
 from django.views.defaults import bad_request, permission_denied, page_not_found, server_error

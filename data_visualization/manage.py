@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+
+"""
+Team: Cluster and Cloud Computing Team 3
+Contents: Assigment 2
+Authors: Kimple Ke
+"""
+
 import os
 import sys
 
