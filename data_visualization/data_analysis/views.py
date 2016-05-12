@@ -160,6 +160,19 @@ def unemployment_afl_data(request):
 
     return JsonResponse(response)
 
+
+def reports(request):
+    return render(request,
+                  'analysis/reports.html'
+                  )
+
+
+def demo(request):
+    return render(request,
+                  'analysis/demo.html'
+                  )
+
+
 def profile(request):
     return render(request,
                   'analysis/team_profile.html'
