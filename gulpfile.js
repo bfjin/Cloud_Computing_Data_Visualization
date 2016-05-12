@@ -9,7 +9,7 @@ var argv = require('yargs')
 
 gulp.task('clean-dist', function () {
   gulp.src('dist')
-    .pipe(clean());
+    .pipe(clean({force: true}));
 });
 
 gulp.task('build', ['clean-dist'], shell.task([
