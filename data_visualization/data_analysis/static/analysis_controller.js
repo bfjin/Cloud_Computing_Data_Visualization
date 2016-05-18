@@ -71,7 +71,7 @@
 
     app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope', '$timeout',
         function($http, $scope, $log, $window, $rootScope, $timeout){
-        
+
         var chart = this;
 
         Chart.defaults.global.colours = [
@@ -102,6 +102,8 @@
         var greenPlacesBBQAnalysisPageEndpoint = "/analytics-3/";
         var unemploymentAFLAnalysisEndpoint = "/get_analytics-4/";
         var unemploymentAFLAnalysisPageEndpoint = "/analytics-4/";
+        var violenceIncomeAnalysisEndpoint = "/get_analytics-5/";
+        var violenceIncomeAnalysisPageEndpoint = "/analytics-5/";
 
 
         $scope.incomeAnalysisGraphUnits = "Australian dollars";
@@ -110,14 +112,14 @@
         $scope.melb_income_analysis_graph.series = ["Income", "Happiness"];
         $scope.melb_income_analysis_graph.options = {
             animation: true
-        } 
+        }
 
         $scope.syd_income_analysis_graph = {};
         $scope.syd_income_analysis_graph.visible = true;
         $scope.syd_income_analysis_graph.series = ["Income", "Happiness"];
         $scope.syd_income_analysis_graph.options = {
             animation: false
-        } 
+        }
 
         $scope.transport_politics_graph_unit = "Number of tweets per 1000 population";
         $scope.transport_politics_graph = {};
@@ -298,6 +300,40 @@
             });
         }
 
+        /*
+        *   send request to server for analysis results of violence and income analysis
+        */
+        $timeout(getViolenceIncomeAnalysisHelper(), 1000);
+
+        $scope.getViolenceIncomeAnalysis = function() {
+            $window.location.href = violenceIncomeAnalysisPageEndpoint;
+            getViolenceIncomeAnalysisHelper();
+        }
+
+        function getViolenceIncomeAnalysisHelper() {
+            $http({
+                url: violenceIncomeAnalysisEndpoint,
+                method: 'GET',
+            }).then(function successCallback(response) {
+                var sla = response.data.sla;
+                var aurin = response.data.aurin;
+                var tweet_count = response.data.tweet_count;
+                var aurin_per_100 = response.data.aurin_per_100;
+                var tweets_per_1000 = response.data.tweets_per_1000;
+
+                $scope.unemployment_afl_graph.labels = aurin_per_100;
+                $scope.unemployment_afl_graph.data = [tweets_per_1000];
+                var i;
+                var table_data = []
+                for(i=0; i<sla.length; i++) {
+                    table_data.push({sla:sla[i], aurin:aurin[i], tweet_count:tweet_count[i], aurin_per_100:aurin_per_100[i], tweets_per_1000:tweets_per_1000[i]});
+                }
+                $scope.unemployment_afl_analysis_table = table_data;
+            }, function errorCallback(response) {
+                $window.location.href = dashboardEndpoint;
+                alert(response.data.error);
+            });
+        }
     }]);
 
 })();
