@@ -166,6 +166,37 @@ def unemployment_afl_data(request):
 
     return JsonResponse(response)
 
+def visualize_violence_income_data(request):
+    return render(request,
+                  'analysis/violence_income_analysis.html',
+                  )
+
+
+def violence_income_data(request):
+    sla = []
+    aurin = []
+    aurin_per_100 = []
+    tweet_count = []
+    tweets_per_1000 = []
+
+    with open(ANALYSIS_PATH + 'unemplyed_afl_correlation.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            sla.append(row[0])
+            aurin.append(row[1])
+            aurin_per_100.append(round(float(row[2]), 5))
+            tweet_count.append(row[3])
+            tweets_per_1000.append(round(float(row[4]), 5))
+
+    response = {
+        "sla": sla,
+        "aurin": aurin,
+        "tweet_count": tweet_count,
+        "aurin_per_100": aurin_per_100,
+        "tweets_per_1000": tweets_per_1000
+    }
+
+    return JsonResponse(response)
 
 def reports(request):
     return render(request,

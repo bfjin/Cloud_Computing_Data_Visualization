@@ -23,6 +23,9 @@ urlpatterns = [
     url(r'^get_analytics-4/?$', views.unemployment_afl_data, name='unemployment_afl_data'),
     url(r'^analytics-4/?$', views.visualize_unemployment_afl_data, name='visualize_unemployment_afl_data'),
 
+    url(r'^get_analytics-5/?$', views.violence_income_data, name='violence_income_data'),
+    url(r'^analytics-5/?$', views.visualize_violence_income_data, name='visualize_violence_income_data'),
+
     url(r'reports/?$', views.reports, name='reports'),
 
     url(r'demo/?$', views.demo, name='demo'),

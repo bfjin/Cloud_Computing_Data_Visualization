@@ -1,0 +1,42 @@
+{% extends "analysis/template.html" %}
+
+{% block title %}
+Transportation Politics Analysis
+{% endblock %}
+
+{% block content %}
+<h1 class="page-header">Transportation & Politics Analysis</h1>
+
+<h2 class="sub-header">Visualize data</h2>
+<div id="transport_politics_graph_container" ng-show="transport_politics_graph.visible">
+    <div class="graph_title">Transportation vs Politics Analysis</div>
+    <div>
+        <text id="y-axis-unit"><b ng-bind="transport_politics_graph_unit"></b></text>
+    </div>
+    <div>
+        <canvas id="line" class="chart chart-line" chart-data="transport_politics_graph.data" chart-labels="transport_politics_graph.labels" chart-legend="true" chart-options="transport_politics_graph.options" chart-series="transport_politics_graph.series"></canvas>
+    </div>
+</div>
+
+<h2 class="sub-header">Table of data</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><strong>SLA (Statistical Local Area)</strong></th>
+                <th><strong>Transport troubles</strong></th>
+                <th><strong>Tweets per 1000 Population</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="animate-repeat" ng-repeat="entry in transport_politics_analysis_table">
+                {% verbatim %}
+                <th>{{ entry.sla }}</th>
+                <th>{{ entry.transport_trouble }}</th>
+                <th>{{ entry.politics_tweets }}</th>
+                {% endverbatim %}
+            <tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
