@@ -166,6 +166,7 @@ def unemployment_afl_data(request):
 
     return JsonResponse(response)
 
+
 def visualize_violence_income_data(request):
     return render(request,
                   'analysis/violence_income_analysis.html',
@@ -197,6 +198,7 @@ def violence_income_data(request):
     }
 
     return JsonResponse(response)
+
 
 def reports(request):
     return render(request,

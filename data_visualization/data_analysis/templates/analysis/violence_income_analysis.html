@@ -1,7 +1,7 @@
 {% extends "analysis/template.html" %}
 
 {% block title %}
-Transportation Politics Analysis
+Violence & Income Analysis
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@ Transportation Politics Analysis
       height: 500px;
     }
 </style>
-<h1 class="page-header">Transportation & Politics Analysis</h1>
+<h1 class="page-header">Violence & Income Analysis</h1>
 <h2 class="sub-header">Map Visualization</h2>
 <div id="map">
   <ui-gmap-google-map center="violence_income_map.center" zoom="violence_income_map.data">
@@ -19,7 +19,7 @@ Transportation Politics Analysis
 </div>
 <h2 class="sub-header">Visualize data</h2>
 <div id="transport_politics_graph_container" ng-show="transport_politics_graph.visible">
-    <div class="graph_title">Transportation vs Politics Analysis</div>
+    <div class="graph_title">Violence vs Income Analysis</div>
     <div>
         <text id="y-axis-unit"><b ng-bind="transport_politics_graph_unit"></b></text>
     </div>
