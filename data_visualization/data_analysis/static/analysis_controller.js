@@ -76,14 +76,6 @@
         });
     });
 
-    // app.config(['uiGmapgoogle-maps', function (uiGmapGoogleMapApiProvider) {
-    //   uiGmapGoogleMapApiProvider.configure({
-    //       //    key: 'your api key',
-    //       v: '3.20', //defaults to latest 3.X anyhow
-    //       libraries: 'weather,geometry,visualization'
-    //   });
-    // }]);
-
     app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope', '$timeout',
         function($http, $scope, $log, $window, $rootScope, $timeout){
 
@@ -159,6 +151,8 @@
         $scope.unemployment_afl_graph.options = {
             animation: true
         }
+
+        $scope.violence_income_map = {};
 
 
         /*
@@ -335,6 +329,13 @@
                 var tweet_count = response.data.tweet_count;
                 var aurin_per_100 = response.data.aurin_per_100;
                 var tweets_per_1000 = response.data.tweets_per_1000;
+
+                // maps data
+                $scope.violence_income_map.center = {
+                  latitude: -37.810601,
+                  longitude: 144.963198
+                };
+                $scope.violence_income_map.zoom = 9;
 
                 $scope.unemployment_afl_graph.labels = aurin_per_100;
                 $scope.unemployment_afl_graph.data = [tweets_per_1000];
