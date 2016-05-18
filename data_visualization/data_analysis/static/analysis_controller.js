@@ -379,6 +379,30 @@
                   }
                 ];
 
+                setTimeout(function() {
+                  console.log("hi");
+                  $scope.violence_income_map.violences_data.push({
+                    center: {
+                        latitude: -37.8147713,
+                        longitude: 144.9527324
+                    },
+                    radius: 500,
+                    stroke: {
+                        color: '#08B21F',
+                        weight: 0.5,
+                        opacity: 1
+                    },
+                    fill: {
+                        color: '#08B21F',
+                        opacity: 0.5
+                    },
+                    geodesic: true, // optional: defaults to false
+                    clickable: true, // optional: defaults to true
+                    visible: true, // optional: defaults to true
+                    control: {}
+                })
+                }, 10000);
+
                 var googleMapEndPoint = "http://maps.googleapis.com/maps/api/geocode/json";
                 //address=santa+cruz&components=postal_code:"+zipcode+"&sensor=false
                 $http({
