@@ -380,7 +380,6 @@
                 ];
 
                 setTimeout(function() {
-                  console.log("hi");
                   $scope.violence_income_map.violences_data.push({
                     center: {
                         latitude: -37.8147713,
