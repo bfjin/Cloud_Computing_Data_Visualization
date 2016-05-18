@@ -325,10 +325,9 @@
                 method: 'GET',
             }).then(function successCallback(response) {
                 var sla = response.data.sla;
-                var aurin = response.data.aurin;
-                var tweet_count = response.data.tweet_count;
-                var aurin_per_100 = response.data.aurin_per_100;
-                var tweets_per_1000 = response.data.tweets_per_1000;
+                var income = response.data.income;
+                var score = response.data.score;
+                var postcodes = response.data.postcodes;
 
                 // maps data
                 $scope.violence_income_map.zoom = 9;
