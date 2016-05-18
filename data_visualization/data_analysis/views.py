@@ -184,8 +184,8 @@ def violence_income_data(request):
         for row in reader:
             sla.append(row[0])
             score.append(round(float(row[3]), 5))
-            income.append(round(float(row[2]), 5))
-            postcodes.append(row[4])
+            income.append(round(float(row[4]), 5))
+            postcodes.append(row[5])
 
     response = {
         "sla": sla,

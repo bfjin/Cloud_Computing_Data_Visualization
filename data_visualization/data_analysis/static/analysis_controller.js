@@ -417,7 +417,7 @@
                 });
 
                 $scope.unemployment_afl_graph.labels = aurin_per_100;
-                $scope.unemployment_afl_graph.data = [tweets_per_1000];
+                $scope.unemployment_afl_graph.data = [income, score];
                 var i;
                 var table_data = []
                 for(i=0; i<sla.length; i++) {
