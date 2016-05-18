@@ -335,6 +335,11 @@
                     latitude: -37.8152065,
                     longitude: 144.963937
                 };
+                var postcodes_violences = {};
+                postcodes.forEach(function(codes) {
+                  console.log(codes.split(','));
+                })
+                console.log(postcodes_violences);
                 $scope.violence_income_map.violences_data = [];
 
                 // $scope.violence_income_map.violences_data = [

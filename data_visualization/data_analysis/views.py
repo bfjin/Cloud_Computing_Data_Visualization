@@ -180,7 +180,7 @@ def violence_income_data(request):
     postcodes = []
 
     with open(ANALYSIS_PATH + 'violence.csv') as csvfile:
-        reader = csv.reader(csvfile)
+        reader = csv.reader(csvfile, delimiter=";")
         for row in reader:
             sla.append(row[0])
             score.append(round(float(row[3]), 5))
