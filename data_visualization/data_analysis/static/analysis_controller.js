@@ -429,6 +429,7 @@
 
                 populateLocation(violences_data, 0);
 
+                // graph data
                 $scope.violence_income_graph.labels = sla;
                 var amplified_score = [];
                 for(k=0; k<score.length; k++){
