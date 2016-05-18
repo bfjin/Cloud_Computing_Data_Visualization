@@ -349,7 +349,7 @@
                   green_weight = Math.floor(255 / 10 * (10 - avg_score)).toString(16).toUpperCase();
                   green_weight = green_weight.length == 1? 0 + green_weight: green_weight;
                 }
-                var color = '#' +  red_weight + green_weight ＋ '00';
+                var color = '#' + red_weight + green_weight + '00';
                 console.log(color);
                 console.log(location);
                 $scope.violence_income_map.violences_data.push({
