@@ -13,9 +13,10 @@ Violence & Income Analysis
 <h1 class="page-header">Violence & Income Analysis</h1>
 <h2 class="sub-header">Map Visualization</h2>
 <div id="map">
-  <ui-gmap-google-map center="violence_income_map.center" zoom="violence_income_map.data">
-    <ui-gmap-layer type="Data" show="true"></ui-gmap-layer>
-  </ui-gmap-google-map>
+  <ui-gmap-google-map center="violence_income_map.center" zoom="violence_income_map.data" refresh="true">
+    <ui-gmap-circle ng-repeat="c in violence_income_map.violences_data" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+                   visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
+    </ui-gmap-circle>  </ui-gmap-google-map>
 </div>
 <h2 class="sub-header">Visualize data</h2>
 <div id="transport_politics_graph_container" ng-show="transport_politics_graph.visible">
