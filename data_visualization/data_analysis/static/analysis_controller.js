@@ -161,7 +161,7 @@
         }
 
         $scope.violence_income_map = {};
-
+        $scope.violence_income_map.violences_data = [];
 
         /*
         *  send request to server for result of income happiness analysis
@@ -320,6 +320,63 @@
         /*
         *   send request to server for analysis results of violence and income analysis
         */
+
+        var googleMapEndPoint = "https://maps.googleapis.com/maps/api/geocode/json";
+        function populateLocation(data, index) {
+            if (index >= data.length || index < 0) {
+                return;
+            }
+
+            $http({
+                url:googleMapEndPoint + "?key=AIzaSyB6YXV_7HWWXjIeD5o-qzDQHpHCZsvTbBk&address=melbourne&components=postal_code:" + data[index].code + "&sensor=false",
+                method: "POST"
+            }).then(function successCallback(response) {
+                console.log(response);
+                var location = response.data.results[0].geometry.location;
+                var avg_score = data[index].sum / data[index].num
+                var red_weight = '00';
+                var green_weight = 'FF';
+                if (avg_score < 4) {
+                    red_weight = '00';
+                } else {
+                    red_weight = Math.floor(255 / 10 * avg_score).toString(16).toUpperCase();
+                    red_weight = red_weight.length == 1? 0 + red_weight: red_weight;
+                }
+
+                if (10 - avg_score <= 6) {
+                  green_weight = '00';
+                } else {
+                  green_weight = Math.floor(255 / 10 * (10 - avg_score)).toString(16).toUpperCase();
+                  green_weight = green_weight.length == 1? 0 + green_weight: green_weight;
+                }
+                var color = '#' +  red_weight + '00' + green_weight;
+                console.log(color);
+                console.log(location);
+                $scope.violence_income_map.violences_data.push({
+                    center: {
+                        latitude: location.lat,
+                        longitude: location.lng
+                    },
+                    radius: 500,
+                    stroke: {
+                        color: color,
+                        weight: 0.5,
+                        opacity: 1
+                    },
+                    fill: {
+                        color: color,
+                        opacity: 0.5
+                    },
+                    geodesic: true, // optional: defaults to false
+                    clickable: true, // optional: defaults to true
+                    visible: true, // optional: defaults to true
+                    control: {}
+                });
+            });
+
+            setTimeout(populateLocation(data, index+1), 100);
+        }
+
         $timeout(getViolenceIncomeAnalysisHelper(), 1000);
 
         $scope.getViolenceIncomeAnalysis = function() {
@@ -339,97 +396,38 @@
                 var base_income = income[0];
 
                 // maps data
-                $scope.violence_income_map.zoom = 9;
+                $scope.violence_income_map.zoom = 10;
                 $scope.violence_income_map.center = {
                     latitude: -37.8152065,
                     longitude: 144.963937
                 };
                 var postcodes_violences = {};
                 postcodes.forEach(function(codes) {
-                  console.log(codes.split(','));
-                })
-                console.log(postcodes_violences);
-                $scope.violence_income_map.violences_data = [];
-
-                // $scope.violence_income_map.violences_data = [
-                //   {
-                //       center: {
-                //           latitude: -37.837037,
-                //           longitude: 144.9588252
-                //       },
-                //       radius: 500,
-                //       stroke: {
-                //           color: '#FF0000',
-                //           weight: 0.5,
-                //           opacity: 1
-                //       },
-                //       fill: {
-                //           color: '#FF0000',
-                //           opacity: 0.5
-                //       },
-                //       geodesic: true, // optional: defaults to false
-                //       clickable: true, // optional: defaults to true
-                //       visible: true, // optional: defaults to true
-                //       control: {}
-                //   },
-                //   {
-                //     center: {
-                //         latitude: -37.8255591,
-                //         longitude: 144.9454207
-                //     },
-                //     radius: 500,
-                //     stroke: {
-                //         color: '#08B21F',
-                //         weight: 0.5,
-                //         opacity: 1
-                //     },
-                //     fill: {
-                //         color: '#08B21F',
-                //         opacity: 0.5
-                //     },
-                //     geodesic: true, // optional: defaults to false
-                //     clickable: true, // optional: defaults to true
-                //     visible: true, // optional: defaults to true
-                //     control: {}
-                //   }
-                // ];
-                //
-                // setTimeout(function() {
-                //   $scope.violence_income_map.violences_data.push({
-                //     center: {
-                //         latitude: -37.8147713,
-                //         longitude: 144.9527324
-                //     },
-                //     radius: 500,
-                //     stroke: {
-                //         color: '#08B21F',
-                //         weight: 0.5,
-                //         opacity: 1
-                //     },
-                //     fill: {
-                //         color: '#08B21F',
-                //         opacity: 0.5
-                //     },
-                //     geodesic: true, // optional: defaults to false
-                //     clickable: true, // optional: defaults to true
-                //     visible: true, // optional: defaults to true
-                //     control: {}
-                // })
-                // }, 10000);
-
-                var googleMapEndPoint = "http://maps.googleapis.com/maps/api/geocode/json";
-                //address=santa+cruz&components=postal_code:"+zipcode+"&sensor=false
-                $http({
-                  url:googleMapEndPoint + "?address=melbourne&components=postal_code:" + 3000 + "&sensor=false",
-                  method: "POST"
-                }).then(function successCallback(response) {
-                  console.log(response);
-                  var location = response.data.results[0].geometry.location;
-                  console.log(location);
-                }, function errorCallback(response) {
-                  $window.location.href = dashboardEndpoint;
-                  alert(response.data.error);
+                  var str = codes.replace(/[^0-9,]|/g, '');
+                  str.split(',').forEach(function(code) {
+                    postcodes_violences[code] = {
+                      code: code,
+                      num: 0,
+                      sum: 0,
+                    }
+                  });
                 });
+
+                postcodes.forEach(function(codes, index) {
+                  var str = codes.replace(/[^0-9,]|/g, '');
+                  str.split(',').forEach(function(code) {
+                    postcodes_violences[code].num = postcodes_violences[code].num + 1;
+                    postcodes_violences[code].sum = postcodes_violences[code].sum + score[index];
+                  });
+                });
+
+                violences_data = [];
+
+                for (code in postcodes_violences) {
+                    violences_data.push(postcodes_violences[code]);
+                }
+
+                populateLocation(violences_data, 0);
 
                 $scope.violence_income_graph.labels = sla;
                 var amplified_score = [];
