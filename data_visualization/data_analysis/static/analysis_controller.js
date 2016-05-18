@@ -328,7 +328,7 @@
             }
 
             $http({
-                url:googleMapEndPoint + "?key=AIzaSyB6YXV_7HWWXjIeD5o-qzDQHpHCZsvTbBk&address=melbourne&components=postal_code:" + data[index].code + "&sensor=false",
+                url:googleMapEndPoint + "?key=AIzaSyBcf63mCCqlDJT6Wbd9ecarXMYw5klmLUQ&address=melbourne&components=postal_code:" + data[index].code + "&sensor=false",
                 method: "POST"
             }).then(function successCallback(response) {
                 console.log(response);
