@@ -4,7 +4,7 @@
 */
 
 (function() {
-    var app = angular.module('charts', ['chart.js']);
+    var app = angular.module('charts', ['chart.js', 'uiGmapgoogle-maps']);
 
     //Format a number, rounding to 2 decimal digits
     function formatNumber(number) {
@@ -67,7 +67,22 @@
                 return obj.datasetLabel + ": " + formatNumber(obj.value);
             },
         });
-    }]);
+    }])
+    .config(function(uiGmapGoogleMapApiProvider) {
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'weather,geometry,visualization'
+        });
+    });
+
+    // app.config(['uiGmapgoogle-maps', function (uiGmapGoogleMapApiProvider) {
+    //   uiGmapGoogleMapApiProvider.configure({
+    //       //    key: 'your api key',
+    //       v: '3.20', //defaults to latest 3.X anyhow
+    //       libraries: 'weather,geometry,visualization'
+    //   });
+    // }]);
 
     app.controller("ChartController", ['$http', '$scope', '$log', '$window', '$rootScope', '$timeout',
         function($http, $scope, $log, $window, $rootScope, $timeout){
