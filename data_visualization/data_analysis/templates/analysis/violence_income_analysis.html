@@ -13,7 +13,9 @@ Transportation Politics Analysis
 <h1 class="page-header">Transportation & Politics Analysis</h1>
 <h2 class="sub-header">Map Visualization</h2>
 <div id="map">
-  <ui-gmap-google-map center="violence_income_map.center" zoom="violence_income_map.data"></ui-gmap-google-map>
+  <ui-gmap-google-map center="violence_income_map.center" zoom="violence_income_map.data">
+    <ui-gmap-layer type="Data" show="true"></ui-gmap-layer>
+  </ui-gmap-google-map>
 </div>
 <h2 class="sub-header">Visualize data</h2>
 <div id="transport_politics_graph_container" ng-show="transport_politics_graph.visible">
