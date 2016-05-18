@@ -331,11 +331,20 @@
                 var tweets_per_1000 = response.data.tweets_per_1000;
 
                 // maps data
-                $scope.violence_income_map.center = {
-                  latitude: -37.810601,
-                  longitude: 144.963198
-                };
                 $scope.violence_income_map.zoom = 9;
+                $scope.violence_income_map.center = {
+                  latitude: -37.8152065,
+                  longitude: 144.963937
+                };
+
+                var googleMapEndPoint = "http://maps.googleapis.com/maps/api/geocode/json";
+                //address=santa+cruz&components=postal_code:"+zipcode+"&sensor=false
+                $http({
+                  url:googleMapEndPoint + "?address=melbourne&components=postal_code:" + 3000 + "&sensor=false",
+                  method: "POST"
+                }).then(function successCallback(response) {
+                  console.log(response);
+                })
 
                 $scope.unemployment_afl_graph.labels = aurin_per_100;
                 $scope.unemployment_afl_graph.data = [tweets_per_1000];
