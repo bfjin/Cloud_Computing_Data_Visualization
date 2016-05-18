@@ -152,6 +152,14 @@
             animation: true
         }
 
+        $scope.violence_income_graph_unit = "$ or level of violence"
+        $scope.violence_income_graph = {};
+        $scope.violence_income_graph.visible = true;
+        $scope.violence_income_graph.series = ["Income", "Level of violence"]
+        $scope.violence_income_graph.options = {
+            animation: true
+        }
+
         $scope.violence_income_map = {};
 
 
@@ -228,7 +236,7 @@
                 $scope.transport_politics_graph.labels = transport_trouble;
                 $scope.transport_politics_graph.data = [politics_tweets];
                 var i;
-                var table_data = []
+                var table_data = [];
                 for(i=0; i<sla.length; i++) {
                     table_data.push({sla:sla[i], transport_trouble:transport_trouble[i], politics_tweets:politics_tweets[i]});
                 }
@@ -263,7 +271,7 @@
                 $scope.green_places_bbq_graph.labels = aurin_per_100;
                 $scope.green_places_bbq_graph.data = [tweets_per_1000];
                 var i;
-                var table_data = []
+                var table_data = [];
                 for(i=0; i<sla.length; i++) {
                     table_data.push({sla:sla[i], aurin:aurin[i], tweet_count:tweet_count[i], aurin_per_100:aurin_per_100[i], tweets_per_1000:tweets_per_1000[i]});
                 }
@@ -298,7 +306,7 @@
                 $scope.unemployment_afl_graph.labels = aurin_per_100;
                 $scope.unemployment_afl_graph.data = [tweets_per_1000];
                 var i;
-                var table_data = []
+                var table_data = [];
                 for(i=0; i<sla.length; i++) {
                     table_data.push({sla:sla[i], aurin:aurin[i], tweet_count:tweet_count[i], aurin_per_100:aurin_per_100[i], tweets_per_1000:tweets_per_1000[i]});
                 }
@@ -328,6 +336,7 @@
                 var income = response.data.income;
                 var score = response.data.score;
                 var postcodes = response.data.postcodes;
+                var base_income = income[0];
 
                 // maps data
                 $scope.violence_income_map.zoom = 9;
@@ -422,14 +431,18 @@
                   alert(response.data.error);
                 });
 
-                $scope.unemployment_afl_graph.labels = aurin_per_100;
-                $scope.unemployment_afl_graph.data = [income, score];
-                var i;
-                var table_data = []
-                for(i=0; i<sla.length; i++) {
-                    table_data.push({sla:sla[i], aurin:aurin[i], tweet_count:tweet_count[i], aurin_per_100:aurin_per_100[i], tweets_per_1000:tweets_per_1000[i]});
+                $scope.violence_income_graph.labels = sla;
+                var amplified_score = [];
+                for(k=0; k<score.length; k++){
+                    amplified_score.push(score[k]*base_income/10);
                 }
-                $scope.unemployment_afl_analysis_table = table_data;
+                $scope.violence_income_graph.data = [income, amplified_score];
+                var i;
+                var table_data = [];
+                for(i=0; i<sla.length; i++) {
+                    table_data.push({sla:sla[i], income:income[i], score:score[i]});
+                }
+                $scope.violence_income_analysis_table = table_data;
             }, function errorCallback(response) {
                 $window.location.href = dashboardEndpoint;
                 alert(response.data.error);

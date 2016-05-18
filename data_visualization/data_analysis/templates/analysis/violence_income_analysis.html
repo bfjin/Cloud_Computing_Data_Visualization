@@ -19,13 +19,13 @@ Violence & Income Analysis
     </ui-gmap-circle>  </ui-gmap-google-map>
 </div>
 <h2 class="sub-header">Visualize data</h2>
-<div id="transport_politics_graph_container" ng-show="transport_politics_graph.visible">
+<div id="violence_income_graph_container" ng-show="violence_income_graph.visible">
     <div class="graph_title">Violence vs Income Analysis</div>
     <div>
-        <text id="y-axis-unit"><b ng-bind="transport_politics_graph_unit"></b></text>
+        <text id="y-axis-unit"><b ng-bind="violence_income_graph_unit"></b></text>
     </div>
     <div>
-        <canvas id="line" class="chart chart-line" chart-data="transport_politics_graph.data" chart-labels="transport_politics_graph.labels" chart-legend="true" chart-options="transport_politics_graph.options" chart-series="transport_politics_graph.series"></canvas>
+        <canvas id="line" class="chart chart-line" chart-data="violence_income_graph.data" chart-labels="violence_income_graph.labels" chart-legend="true" chart-options="violence_income_graph.options" chart-series="violence_income_graph.series"></canvas>
     </div>
 </div>
 
@@ -35,16 +35,16 @@ Violence & Income Analysis
         <thead>
             <tr>
                 <th><strong>SLA (Statistical Local Area)</strong></th>
-                <th><strong>Transport troubles</strong></th>
-                <th><strong>Tweets per 1000 Population</strong></th>
+                <th><strong>Income</strong></th>
+                <th><strong>Level of violence</strong></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="animate-repeat" ng-repeat="entry in transport_politics_analysis_table">
+            <tr class="animate-repeat" ng-repeat="entry in violence_income_analysis_table">
                 {% verbatim %}
                 <th>{{ entry.sla }}</th>
-                <th>{{ entry.transport_trouble }}</th>
-                <th>{{ entry.politics_tweets }}</th>
+                <th>{{ entry.income }}</th>
+                <th>{{ entry.score }}</th>
                 {% endverbatim %}
             <tr>
         </tbody>
