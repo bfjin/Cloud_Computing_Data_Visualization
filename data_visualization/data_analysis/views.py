@@ -175,26 +175,23 @@ def visualize_violence_income_data(request):
 
 def violence_income_data(request):
     sla = []
-    aurin = []
-    aurin_per_100 = []
-    tweet_count = []
-    tweets_per_1000 = []
+    score = []
+    income = []
+    postcodes = []
 
-    with open(ANALYSIS_PATH + 'unemplyed_afl_correlation.csv') as csvfile:
+    with open(ANALYSIS_PATH + 'violence.csv') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             sla.append(row[0])
-            aurin.append(row[1])
-            aurin_per_100.append(round(float(row[2]), 5))
-            tweet_count.append(row[3])
-            tweets_per_1000.append(round(float(row[4]), 5))
+            score.append(round(float(row[3]), 5))
+            income.append(round(float(row[2]), 5))
+            postcodes.append(row[4])
 
     response = {
         "sla": sla,
-        "aurin": aurin,
-        "tweet_count": tweet_count,
-        "aurin_per_100": aurin_per_100,
-        "tweets_per_1000": tweets_per_1000
+        "score": score,
+        "income": income,
+        "postcodes": postcodes
     }
 
     return JsonResponse(response)
