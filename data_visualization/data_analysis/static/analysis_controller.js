@@ -335,71 +335,73 @@
                     latitude: -37.8152065,
                     longitude: 144.963937
                 };
-                $scope.violence_income_map.violences_data = [
-                  {
-                      center: {
-                          latitude: -37.837037,
-                          longitude: 144.9588252
-                      },
-                      radius: 500,
-                      stroke: {
-                          color: '#FF0000',
-                          weight: 0.5,
-                          opacity: 1
-                      },
-                      fill: {
-                          color: '#FF0000',
-                          opacity: 0.5
-                      },
-                      geodesic: true, // optional: defaults to false
-                      clickable: true, // optional: defaults to true
-                      visible: true, // optional: defaults to true
-                      control: {}
-                  },
-                  {
-                    center: {
-                        latitude: -37.8255591,
-                        longitude: 144.9454207
-                    },
-                    radius: 500,
-                    stroke: {
-                        color: '#08B21F',
-                        weight: 0.5,
-                        opacity: 1
-                    },
-                    fill: {
-                        color: '#08B21F',
-                        opacity: 0.5
-                    },
-                    geodesic: true, // optional: defaults to false
-                    clickable: true, // optional: defaults to true
-                    visible: true, // optional: defaults to true
-                    control: {}
-                  }
-                ];
+                $scope.violence_income_map.violences_data = [];
 
-                setTimeout(function() {
-                  $scope.violence_income_map.violences_data.push({
-                    center: {
-                        latitude: -37.8147713,
-                        longitude: 144.9527324
-                    },
-                    radius: 500,
-                    stroke: {
-                        color: '#08B21F',
-                        weight: 0.5,
-                        opacity: 1
-                    },
-                    fill: {
-                        color: '#08B21F',
-                        opacity: 0.5
-                    },
-                    geodesic: true, // optional: defaults to false
-                    clickable: true, // optional: defaults to true
-                    visible: true, // optional: defaults to true
-                    control: {}
-                })
-                }, 10000);
+                // $scope.violence_income_map.violences_data = [
+                //   {
+                //       center: {
+                //           latitude: -37.837037,
+                //           longitude: 144.9588252
+                //       },
+                //       radius: 500,
+                //       stroke: {
+                //           color: '#FF0000',
+                //           weight: 0.5,
+                //           opacity: 1
+                //       },
+                //       fill: {
+                //           color: '#FF0000',
+                //           opacity: 0.5
+                //       },
+                //       geodesic: true, // optional: defaults to false
+                //       clickable: true, // optional: defaults to true
+                //       visible: true, // optional: defaults to true
+                //       control: {}
+                //   },
+                //   {
+                //     center: {
+                //         latitude: -37.8255591,
+                //         longitude: 144.9454207
+                //     },
+                //     radius: 500,
+                //     stroke: {
+                //         color: '#08B21F',
+                //         weight: 0.5,
+                //         opacity: 1
+                //     },
+                //     fill: {
+                //         color: '#08B21F',
+                //         opacity: 0.5
+                //     },
+                //     geodesic: true, // optional: defaults to false
+                //     clickable: true, // optional: defaults to true
+                //     visible: true, // optional: defaults to true
+                //     control: {}
+                //   }
+                // ];
+                //
+                // setTimeout(function() {
+                //   $scope.violence_income_map.violences_data.push({
+                //     center: {
+                //         latitude: -37.8147713,
+                //         longitude: 144.9527324
+                //     },
+                //     radius: 500,
+                //     stroke: {
+                //         color: '#08B21F',
+                //         weight: 0.5,
+                //         opacity: 1
+                //     },
+                //     fill: {
+                //         color: '#08B21F',
+                //         opacity: 0.5
+                //     },
+                //     geodesic: true, // optional: defaults to false
+                //     clickable: true, // optional: defaults to true
+                //     visible: true, // optional: defaults to true
+                //     control: {}
+                // })
+                // }, 10000);
 
                 var googleMapEndPoint = "http://maps.googleapis.com/maps/api/geocode/json";
                 //address=santa+cruz&components=postal_code:"+zipcode+"&sensor=false
