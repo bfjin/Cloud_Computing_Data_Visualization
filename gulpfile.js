@@ -3,6 +3,7 @@ var shell = require('gulp-shell');
 var clean = require('gulp-clean');
 var runSequence = require('run-sequence');
 var open = require('gulp-open');
+var es = require('event-stream');
 var argv = require('yargs')
   .default('tag', "v1.0")
   .alias('t', 'tag')
@@ -30,18 +31,15 @@ gulp.task('clean', function() {
 })
 
 gulp.task('default', ['build', 'dist']);
-gulp.task('run', ['default', 'dist', 'open'], function() {
-  return gulp.src('')
+gulp.task('run', ['default', 'dist'], function() {
+  return es.concat(gulp.src('')
     .pipe(shell([
       'python dist/manage.pyc runserver'
-    ]));
+    ])),
+    gulp.src('')
+      .pipe(open({uri: 'http://localhost:8000', app: 'chrome'}))
+    );
 });
-
-gulp.task('open', function() {
-  return gulp.src('')
-    .pipe(open({uri: 'http://localhost:8000', app: 'chrome' }));
-})
-
 
 gulp.task('docker-publish', ['default'], shell.task([
   'docker build -t shuliyey/cloud_computing_data_visualization:' + argv.tag + ' .',

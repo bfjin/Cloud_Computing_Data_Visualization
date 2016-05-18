@@ -22,6 +22,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/ccc20163/cloud_computing_data_visualization#readme",
   "devDependencies": {
+    "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-open": "^2.0.0",
